@@ -1,0 +1,28 @@
+navbar{
+	margin-bottom: 0;
+}
+
+.jumbotron {
+	background: #428BCA;
+	color: #fff;
+	padding:20px 0;
+}
+
+
+
+
+.input-group{
+	padding-bottom: 20px;
+}
+
+
+#menu-lateral{
+
+	width: auto;
+	height: 300px;
+	margin-left: 3%;
+	margin-right: 3%;
+
+
+
+}

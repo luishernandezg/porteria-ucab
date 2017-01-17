@@ -1,9 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,26 +12,24 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { PasesComponent } from './pases/pases.component';
 import { EstacionamientoComponent } from './estacionamiento/estacionamiento.component';
 
+const appRoutes: Routes = [
+  {
+  path: '',redirectTo: '/login',pathMatch: 'full'},
+  { path: 'login', component: LoginComponent },
+  { path: 'resgistro', component: ResgistroComponent },
+  { path: 'matricula', component: MatriculaComponent },
+  { path: 'mod-datos-personales', component:  ModificarDatosperonalesComponent },
+  { path: 'mod-contrasena', component:  CambiarContrasenaComponent },
+  { path: 'pases', component:  PasesComponent },
+  { path: 'estacionamiento', component:  EstacionamientoComponent }
+];
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    MatriculaComponent,
-    ModificarDatosperonalesComponent,
-    CambiarContrasenaComponent,
-    ResgistroComponent,
-    MenuComponent,
-    TopBarComponent,
-    PasesComponent,
-    EstacionamientoComponent
-  ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AppRoutingModule
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    RouterModule
+  ]
 })
-export class AppModule { }
+export class AppRoutingModule {}
