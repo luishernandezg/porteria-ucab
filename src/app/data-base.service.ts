@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Mensaje } from './mensaje';
 import { Puesto } from './puesto';
+import { Usuario } from './usuario';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
@@ -27,44 +28,49 @@ export class DataBaseService {
                     .catch(this.handleError);
   }
 
- 
+
   insertEntrada (
       matricula: string,
       puesto:number,
     ): Observable<Mensaje[]> {
-      console.log(`matrucula: ${matricula} puesto: ${puesto}`); 
+      console.log(`matrucula: ${matricula} puesto: ${puesto}`);
     return this.http.post( this.insertEntradaUrl,JSON.stringify({
         matriculaauto: matricula,
         nropuesto: puesto,
-        
+
   }))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
 
+  /**
+       * Reflejo de la Tabla usuario
+       *
+       * @param $cedula          string
+       * @param $nroexp          string
+       * @param $nombre          string
+       * @param $apellido        string
+       * @param $correo          string
+       * @param $telefono        string
+       * @param $clave           string
+       */
 
- insertUsuario (
-  cedula: string,
-  nroexp:string,
-  nombre: string,
-  apellido: string,
-  correo: string,
-  telefono: string,
-  clave: string
-  ): Observable<Mensaje[]> {
+ insertUsuario (nuevoUsuario : Usuario): Observable<Mensaje[]> {
     return this.http.post( this.insertUsuarioUrl,JSON.stringify({
-        cedula: cedula,
-        nroexp: nroexp,
-        nombre: nombre,
-        apellido: apellido,
-        correo: correo,
-        telefono: telefono,        
-        clave: clave,
+        cedula: nuevoUsuario.cedula,
+        nroexp: nuevoUsuario.nroexp,
+        nombre: nuevoUsuario.nombre,
+        apellido: nuevoUsuario.apellido,
+        correo: nuevoUsuario.correo,
+        telefono: nuevoUsuario.telefono,
+        clave: nuevoUsuario.clave,
   }))
-                    .map(this.extractData)
-                    .catch(this.handleError);
+     .map(this.extractData)
+     .catch(this.handleError);
   }
+
+
   private extractData(res: Response) {
     let body = res.json();
     //console.log(`Adding article title: ${body[1].contenido} and link: ${"hola111"}`);
@@ -91,62 +97,7 @@ export class DataBaseService {
 
 
 
-  /**
-     *         Tabla usuario
-     *
-     * @param cedula          string
-     * @param nombre          string
-     * @param apellido        string
-     * @param telefono        string
-     * @param correo          string
-     * @param nroexp          string
-     * @return 
-     */
-  
 
-
- insertUsuarioo(
-  cedula: string,
-  nombre: string,
-  apellido: string,
-  telefono: string,
-  correo: string
-  ):Promise<Object> {
-   
-  return this.http.post(
-  this.insertUsuarioUrl,
-  JSON.stringify({
-        cedula: cedula,
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono,
-        correo: correo
-  }))
-  .toPromise().then(res => res.json() as Object);
-  
-}
-
-
- insertUsuario2(
-  cedula: string,
-  nombre: string,
-  apellido: string,
-  telefono: string,
-  correo: string
-  ):Promise<Mensaje> {
-   
-  return this.http.post(
-  this.insertUsuarioUrl,
-  JSON.stringify({
-        cedula: cedula,
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono,
-        correo: correo
-  }))
-  .toPromise().then(res => res.json() as Mensaje);
-  
-}
 
 
  /**
@@ -156,7 +107,7 @@ export class DataBaseService {
      * @param color        string
      * @param matricula    string
      * @param modelo       string
-     * 
+     *
      **/
 
     insertAutomovil(){
@@ -169,7 +120,7 @@ export class DataBaseService {
      * @param matricula     string
      * @param cedula        string
      * @param parentesco    string
-     * 
+     *
      **/
 
     inserMatricula(){
@@ -182,7 +133,7 @@ export class DataBaseService {
      * @param hora         string->time
      * @param matricula    string
      * @param puesto       number
-     * 
+     *
      **/
     insertEntrda(){
 
@@ -190,7 +141,3 @@ export class DataBaseService {
 
 
 }
-
-
-
-

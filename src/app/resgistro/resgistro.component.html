@@ -7,77 +7,73 @@
 <div class="row">
       <div class="col-xs-2">
       </div>
-        
-      <div id="crt" class="col-xs-8">  
+
+      <div id="crt" class="col-xs-8">
             <br><br>
-       
 
-
-           
             <h1 align="center"><br>Registro<br><br></h1>
-         
-      
-                    
+
+
                     <form class="form-horizontal" role="form" method="post">
                           <!--  cedula-->
                           <div class="form-group">
-                          
+
                             <label class="col-xs-4 control-label">CI</label>
                             <div class="col-xs-5">
                               <input class="form-control" id="cedula" #cedula>
                             </div>
-                        
+
                           </div>
                             <!--  nroexp-->
                           <div class="form-group">
-                          
+
                             <label class="col-xs-4 control-label">nroexp</label>
                             <div class="col-xs-5">
                               <input class="form-control" id="nroexp" #nroexp>
                             </div>
-                        
+
                           </div>
 
-                           <!-- nombre--> 
+                           <!-- nombre-->
                           <div class="form-group">
-                            
+
                             <label  class="col-xs-4 control-label">Nombre</label>
                             <div class="col-xs-5">
                               <input class="form-control" id="nombre_usuario" #nombre>
                             </div>
-                           
+
                           </div>
 
                           <!--  apellido-->
                           <div class="form-group">
-                           
+
                             <label class="col-xs-4 control-label">Apellido</label>
                             <div class="col-xs-5">
                               <input class="form-control" id="apellido_usuario" #apellido>
                             </div>
-                            
-                          </div>
 
-                          <!--  telefono-->
-                          <div class="form-group">
-                           
-                            <label class="col-xs-4 control-label">Teléfono</label>
-                            <div class="col-xs-5">
-                              <input class="form-control" id="telefono_usuario"
-                                     placeholder="xxxx-xxxxxxx" #telefono>
-                            </div>
-                            
                           </div>
 
                           <!--  correo-->
                           <div class="form-group">
-                         
+
                             <label for="ejemplo_email_3" class="col-xs-4 control-label">Email</label>
                             <div class="col-xs-5">
                               <input type="email" class="form-control" id="email_usuario"
                                      placeholder="example@correo.com" #correo>
                             </div>
-                           
+
+                          </div>
+
+                          <!--  telefono-->
+                          <div class="form-group">
+
+                            <label class="col-xs-4 control-label">Teléfono</label>
+                            <div class="col-xs-5">
+                              <input class="form-control" id="telefono_usuario"
+                                     placeholder="xxxx-xxxxxxx" #telefono>
+                            </div>
+
                           </div>
 
                           <!--password-->
@@ -94,39 +90,41 @@
                                    <input type="password" class="form-control" id="confirma_password" placeholder="clave">
                                 </div>
                             </div>
+
+                              <!--Botones-->
                           <div id="div-boton">
                             <br><br>
                                 <p>
                                   <a type="button" class="btn btn-info" (click)="insert(cedula,nroexp,nombre,apellido,telefono,correo,clave)" >Registrarse</a>
                                   <a type="button" class="btn btn-default" routerLink="/login" >Cancelar</a>
                                   <a type="button" class="btn btn-default"  (click)="hola()" >test</a>
-                                  
+
                                 </p>
                                 <ul>
                                 </ul>
-                                
+
                                 <div *ngIf="loading"><div class="loader"></div> </div>
                                 <div><h4> </h4> </div>
                                 <div><h4> {{ mensajes | json }}</h4> </div>
                                  <p [hidden]="!visible">
                                  <a  type="button" class="btn btn-default" routerLink="/mod-datos-personales">Continuar</a>
                                  </p>
-                                 
-                                
+
+
                           </div>
-                           
-                           
-                            
-                            
+
+
+
+
                         </form>
 
-                  
-         
-                        
+
+
+
       </div>
-             
+
         <div class="col-xs-2">
-          
+
         </div>
 
 </div>
