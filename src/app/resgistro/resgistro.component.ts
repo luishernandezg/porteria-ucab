@@ -13,9 +13,12 @@ import { Headers, Http, Response } from '@angular/http';
 })
 export class ResgistroComponent implements OnInit {
 
-  mensajes: Mensaje[]=[];
-  loading: boolean;
+  loading : boolean;
   visible = false;
+  creado : boolean;
+  nocreado : boolean;
+  responseCode : number = 0;
+  alerta : string = "";
 
 
   constructor( private router: Router,
@@ -25,7 +28,15 @@ export class ResgistroComponent implements OnInit {
   }
 
     ngOnInit() {
+     this.creado = false;
+     this.nocreado = false;
   }
+  palabra(){
+    this.alerta = this.dataBaseService.getPalabra();
+
+
+  }
+
 
   insert(
     cedula: HTMLInputElement,
@@ -48,12 +59,24 @@ export class ResgistroComponent implements OnInit {
 
      this.dataBaseService.insertUsuario(nuevoUsuario)
                    .subscribe(
-                     mensajes =>{
-                       this.mensajes = mensajes;
+                     respondeCode =>{
+                       this.responseCode = respondeCode;                     
                        this.loading = false;
-                       this.visible = true;
-
+                       this.creado = false;
+                       this.nocreado = false;
+                       
+                       console.log(`responseCode: ${this.responseCode} `);
+                       if(this.responseCode == 201){
+                          this.visible = true;
+                          this.creado = true;
+                          this.alerta ="Peticion Exitosa"
+                       }else{
+                          this.nocreado = true;
+                          this.alerta ="Peticion Fallida"
+                       }
                        } );
+                        
+
      }
 
 }

@@ -5,7 +5,7 @@
          
                     
                     <form class="form-horizontal" role="form" method="post" action="php/form.php">
-                          <!--  cedula-->
+                          <!--  matricila -->
 
                           <div class="form-group">
                           
@@ -16,7 +16,7 @@
                       
                           </div>
 
-                           <!-- nombre--> 
+                           <!-- modelo --> 
                           <div class="form-group">
                       
                             <label  class="col-xs-4 control-label">Modelo</label>
@@ -26,7 +26,7 @@
                     
                           </div>
 
-                           <!-- ano_veh--> 
+                           <!-- ano --> 
                           <div class="form-group">
                     
                             <label  class="col-xs-4 control-label">Año</label>
@@ -46,11 +46,23 @@
                       
                           </div>
 
+                            <!--Botones-->
                           <div id="div-boton">
-            
-                            <br><td></td><a id="boton" type="submit" class="btn btn-info btn-md" >Cambiar</a>
-                                  <br><br>
-                      
+                            <br><br>
+                                <p>
+                                  <a type="button" class="btn btn-info" (click)="insert(matricula,modelo,ano,color)" >Aceptar</a>
+                                  <a type="button" class="btn btn-default" routerLink="/login" >Cancelar</a>
+
+                                </p>
+                               
+                                <ul>
+                                </ul>
+
+                                <div *ngIf="loading"><div class="loader"></div> </div>
+                                   <div [ngClass]="{'alert alert-success': creado, 'alert alert-danger': nocreado}">  {{ alerta }}  </div>
+                                 
+
+
                           </div>
 
                          

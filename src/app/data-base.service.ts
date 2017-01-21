@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Mensaje } from './mensaje';
 import { Puesto } from './puesto';
 import { Usuario } from './usuario';
+import { Automovil } from './automovil';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
@@ -13,10 +14,12 @@ import { Observable } from 'rxjs/Rx';
 export class DataBaseService {
   private insertUsuarioUrl = 'http://localhost/api-porteria/insert_usuario.php';  // URL web api
   private insertEntradaUrl = 'http://localhost/api-porteria/insert_entrada.php';
+  private insertAutomovilUrl = 'http://localhost/api-porteria/insert_automovil.php';
   private getPuestoUrl = 'http://localhost/api-porteria/obtener_puesto.php';
   private baseUrl = 'http://localhost/api-porteria/test.php';
   private heroesUrl ="app/data.json";
   data: Object;
+  public palabra : string ="";
 
   constructor(private http: Http) { }
 
@@ -45,18 +48,19 @@ export class DataBaseService {
 
 
   /**
-       * Reflejo de la Tabla usuario
+       * Inserta en la Tabla usuario
        *
-       * @param $cedula          string
-       * @param $nroexp          string
-       * @param $nombre          string
-       * @param $apellido        string
-       * @param $correo          string
-       * @param $telefono        string
-       * @param $clave           string
+       * @param  $cedula          string
+       * @param  $nroexp          string
+       * @param  $nombre          string
+       * @param  $apellido        string
+       * @param  $correo          string
+       * @param  $telefono        string
+       * @param  $clave           string
+       * @return number 201(creado) 202(fallido)
        */
 
- insertUsuario (nuevoUsuario : Usuario): Observable<Mensaje[]> {
+ insertUsuario (nuevoUsuario : Usuario): Observable<number> {
     return this.http.post( this.insertUsuarioUrl,JSON.stringify({
         cedula: nuevoUsuario.cedula,
         nroexp: nuevoUsuario.nroexp,
@@ -66,15 +70,21 @@ export class DataBaseService {
         telefono: nuevoUsuario.telefono,
         clave: nuevoUsuario.clave,
   }))
-     .map(this.extractData)
+     .map(this.extractDataPost)
      .catch(this.handleError);
   }
 
 
   private extractData(res: Response) {
+    console.log(`estatus: ${res.status}`);
     let body = res.json();
-    //console.log(`Adding article title: ${body[1].contenido} and link: ${"hola111"}`);
+
+    //console.log(`Contenido: ${body} and link: ${"hola111"}`);
     return body || { };
+  }
+    private extractDataPost(res: Response) {
+
+    return res.status;
   }
   private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
@@ -91,8 +101,9 @@ export class DataBaseService {
   }
 
 
-  getHola(){
-    return "hola";
+  getPalabra(){
+    this.palabra = this.palabra + "LA"
+    return this.palabra;
   }
 
 
@@ -101,17 +112,25 @@ export class DataBaseService {
 
 
  /**
-     *        Tabla automovil
+     * Insertar en la Tabla automovil
      *
-     * @param ano          number
-     * @param color        string
-     * @param matricula    string
-     * @param modelo       string
-     *
-     **/
+     * @param  $matricula       string        
+     * @param  $modelo          string
+     * @param  $ano             int          
+     * @param  $color           string
+     * @return number 201(creado) 202(fallido)
+     * 
+     */
 
-    insertAutomovil(){
-
+    insertAutomovil(nuevoAutomovil :Automovil): Observable<number>{
+        return this.http.post( this.insertAutomovilUrl,JSON.stringify({
+          matricula: nuevoAutomovil.matricula,
+          modelo: nuevoAutomovil.modelo,
+          ano: nuevoAutomovil.ano,
+          color: nuevoAutomovil.color,
+  }))
+     .map(this.extractDataPost)
+     .catch(this.handleError);
     }
 
      /**

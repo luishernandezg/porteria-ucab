@@ -11,7 +11,7 @@ import { Headers, Http, Response } from '@angular/http';
   providers: [DataBaseService]
 })
 export class LoginComponent implements OnInit {
-  palabra :string;
+  alerta :string = "";
 
   constructor( private router: Router,private dataBaseService: DataBaseService) { 
     
@@ -24,9 +24,12 @@ goToPage(){
   this.router.navigate(["/matricula"]);
 }
 
-decirMensaje(){
-  this.palabra = this.dataBaseService.getHola();
-}
+  palabra(){
+    this.alerta = this.dataBaseService.getPalabra();
+
+
+  }
+
 
 
 }

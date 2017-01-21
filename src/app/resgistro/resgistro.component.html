@@ -97,17 +97,17 @@
                                 <p>
                                   <a type="button" class="btn btn-info" (click)="insert(cedula,nroexp,nombre,apellido,telefono,correo,clave)" >Registrarse</a>
                                   <a type="button" class="btn btn-default" routerLink="/login" >Cancelar</a>
-                                  <a type="button" class="btn btn-default"  (click)="hola()" >test</a>
 
                                 </p>
+                               
                                 <ul>
                                 </ul>
 
                                 <div *ngIf="loading"><div class="loader"></div> </div>
-                                <div><h4> </h4> </div>
-                                <div><h4> {{ mensajes | json }}</h4> </div>
+                                   <div [ngClass]="{'alert alert-success': creado, 'alert alert-danger': nocreado}">  {{ alerta }}  </div>
                                  <p [hidden]="!visible">
-                                 <a  type="button" class="btn btn-default" routerLink="/mod-datos-personales">Continuar</a>
+                                  
+                                   <a  type="button" class="btn btn-default" routerLink="/mod-datos-personales">Continuar</a>
                                  </p>
 
 
