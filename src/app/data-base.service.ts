@@ -3,6 +3,9 @@ import { Mensaje } from './mensaje';
 import { Puesto } from './puesto';
 import { Usuario } from './usuario';
 import { Automovil } from './automovil';
+import { Entrada } from './entrada';
+import { Salida } from './salida';
+import { Token } from './token';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
@@ -17,6 +20,9 @@ export class DataBaseService {
   private insertAutomovilUrl = 'http://localhost/api-porteria/insert_automovil.php';
   private getPuestoUrl = 'http://localhost/api-porteria/obtener_puesto.php';
   private baseUrl = 'http://localhost/api-porteria/test.php';
+  private getEntradaUrl = 'http://localhost/api-porteria/get_entrada.php';
+  private getSalidaUrl = 'http://localhost/api-porteria/get_salida.php';
+   private loginUrl = 'http://localhost/api-porteria/login.php';
   private heroesUrl ="app/data.json";
   data: Object;
   public palabra : string ="";
@@ -25,8 +31,22 @@ export class DataBaseService {
 
 
 
-  getPuestos(): Observable<Puesto[]> {
-    return this.http.get( this.getPuestoUrl)
+  getEntrada(): Observable<Entrada[]> {
+    return this.http.get( this.getEntradaUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+
+    getSalida(): Observable<Salida[]> {
+    return this.http.get( this.getSalidaUrl)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+
+    login(email : string,clave : string): Observable<Token> {
+    return this.http.get( this.loginUrl+"?email="+email+"&"+"clave="+clave)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -79,7 +99,7 @@ export class DataBaseService {
     console.log(`estatus: ${res.status}`);
     let body = res.json();
 
-    //console.log(`Contenido: ${body} and link: ${"hola111"}`);
+    console.log(`Contenido: ${body}`);
     return body || { };
   }
     private extractDataPost(res: Response) {

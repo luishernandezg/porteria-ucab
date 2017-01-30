@@ -15,6 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { PasesComponent } from './pases/pases.component';
 import { EstacionamientoComponent } from './estacionamiento/estacionamiento.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EstacionamientoComponent } from './estacionamiento/estacionamiento.comp
     MenuComponent,
     TopBarComponent,
     PasesComponent,
-    EstacionamientoComponent
+    EstacionamientoComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,

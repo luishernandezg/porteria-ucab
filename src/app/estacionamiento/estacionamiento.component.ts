@@ -29,40 +29,9 @@ export class EstacionamientoComponent implements OnInit {
   constructor( private router: Router,
   private dataBaseService: DataBaseService,
   private http: Http) {
-
-
-  
    }
-
-  ngOnInit() {
- 
-          this.actualizarPuesto();
-
-  }
-
-   actualizarPuesto() {
-     this.dataBaseService.getPuestos(
-      ).subscribe(puestos =>{
-                    this.puestos = puestos;
-                 } );
-     }
-
-   insert(
-      matricula: HTMLInputElement,
-      puesto: HTMLInputElement
    
-    ) {
-     this.dataBaseService.insertEntrada(
-       matricula.value,
-      parseInt(puesto.value) 
-      )
-                   .subscribe(
-                     mensajes =>{
-                       this.mensajes = mensajes;
-                       this.loading = false;
-                       this.visible = true;
-
-                       } );
-     }
+  ngOnInit() {    
+  }
 
 }

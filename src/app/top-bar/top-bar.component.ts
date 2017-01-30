@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  public usuario:string = "";
+
+  constructor() { 
+    this.usuario = sessionStorage.getItem("nombre");
+  }
 
   ngOnInit() {
+    this.usuario = sessionStorage.getItem("nombre");
   }
 
 }

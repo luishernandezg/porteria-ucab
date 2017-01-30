@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { PasesComponent } from './pases/pases.component';
 import { EstacionamientoComponent } from './estacionamiento/estacionamiento.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 const appRoutes: Routes = [
   {
@@ -21,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'mod-datos-personales', component:  ModificarDatosperonalesComponent },
   { path: 'mod-contrasena', component:  CambiarContrasenaComponent },
   { path: 'pases', component:  PasesComponent },
-  { path: 'estacionamiento', component:  EstacionamientoComponent }
+  { path: 'estadisticas', component:  EstadisticasComponent }
 ];
 
 @NgModule({

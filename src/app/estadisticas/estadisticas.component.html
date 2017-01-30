@@ -1,0 +1,60 @@
+<app-top-bar></app-top-bar>
+<app-menu></app-menu>
+
+
+<div id="crt" class="col-md-6">
+
+  <h1 align="center">Estadisticas</h1>
+  
+
+
+
+
+    
+<h3>Entradas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Placa</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entrada of entradas">
+        <td>{{entrada.numero}}</td>
+        <td>{{entrada.matriculaauto}}</td>
+        <td>{{entrada.fecha}}</td>
+        <td>{{entrada.hora}}</td>
+      </tr>
+ 
+    </tbody>
+  </table>
+
+
+  <h3>Salidas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numero</th>
+        <th>Placa</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salida of salidas">
+        <td>{{salida.numero}}</td>
+        <td>{{salida.matricula}}</td>
+        <td>{{salida.fecha}}</td>
+        <td>{{salida.hora}}</td>
+      </tr>
+ 
+    </tbody>
+  </table>
+
+</div>
+
+
+
